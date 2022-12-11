@@ -2,7 +2,6 @@ package com.example.notesalpha.controller.database;
 
 import com.example.notesalpha.controller.accounts.UserProfile;
 import com.example.notesalpha.model.Task;
-import com.example.notesalpha.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;

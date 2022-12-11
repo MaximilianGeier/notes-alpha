@@ -4,7 +4,6 @@ import com.example.notesalpha.controller.accounts.UserProfile;
 import com.example.notesalpha.controller.database.ClientsDAO;
 import com.example.notesalpha.controller.database.TasksDAO;
 import com.example.notesalpha.model.Task;
-import com.example.notesalpha.service.TaskService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -15,12 +14,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.SQLException;
-import java.util.List;
 
 @Controller
 public class TasksViewController {
@@ -47,7 +43,7 @@ public class TasksViewController {
     @GetMapping("/main")
     public String main(HttpServletRequest request, HttpServletResponse response) {
         if(getClientLogin(request.getCookies()) == null){
-            return  "view/signup";
+            return "view/signup";
         };
         return "view/list";
     }
@@ -58,7 +54,6 @@ public class TasksViewController {
         JSONObject obj = new JSONObject();
         String login = getClientLogin(request.getCookies());
         obj.put("result", tasksDAO.getTasks(login));
-        System.out.println(obj.toString());
         return obj.toString();
     }
 
@@ -140,7 +135,7 @@ public class TasksViewController {
 
         if (login == null || pass == null) {
             response.setContentType("text/html;charset=utf-8");
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
             return;
         }
         UserProfile currentUser;
