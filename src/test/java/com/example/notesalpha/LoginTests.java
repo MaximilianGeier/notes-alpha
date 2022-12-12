@@ -50,8 +50,7 @@ class LoginTests {
 		this.mockMvc.perform(post("http://localhost:8000/signin").param("login", "22").param("pass", "1"))
 				.andDo(print())
 				.andExpect(status().is3xxRedirection())
-				.andExpect(redirectedUrl("http://localhost:8000/main"))
-				.andExpect(cookie().value("idSession", "1"));
+				.andExpect(redirectedUrl("http://localhost:8000/signin"));
 	}
 
 	@Test
